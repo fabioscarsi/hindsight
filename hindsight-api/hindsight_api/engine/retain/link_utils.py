@@ -143,6 +143,7 @@ async def extract_entities_batch_optimized(
     fact_dates: list,
     llm_entities: list[list[dict]],
     log_buffer: list[str] = None,
+    entity_labels: list | None = None,
 ) -> list[tuple]:
     """
     Process LLM-extracted entities for ALL facts in batch.
@@ -232,6 +233,7 @@ async def extract_entities_batch_optimized(
                 context=context,
                 unit_event_date=None,  # Not used when per-entity dates provided
                 conn=conn,  # Use main transaction connection
+                entity_labels=entity_labels,
             )
 
             _log(
